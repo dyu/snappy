@@ -1,0 +1,65 @@
+# ==================================================
+# vars
+
+snappy_dir = "."
+
+config("snappy_config") {
+  include_dirs = [ "$snappy_dir" ]
+}
+
+static_library("snappy") {
+  if (is_win) {
+    cflags = [ "/wd4018" ]  # Signed/unsigned mismatch in comparison.
+  }
+  
+  defines = [ "HAVE_CONFIG_H=1" ]
+
+  sources = [
+    "snappy-internal.h",
+    "snappy-sinksource.cc",
+    "snappy-sinksource.h",
+    "snappy-stubs-internal.cc",
+    "snappy-stubs-internal.h",
+    "snappy.cc",
+    "snappy.h",
+  ]
+  
+  # local includes
+  if (is_win) {
+    sources += [ "gn-platform/win/config.h" ]
+    include_dirs = [ "gn-platform/win" ]
+  } else if (is_mac) {
+    sources += [ "gn-platform/mac/config.h" ]
+    include_dirs = [ "gn-platform/mac" ]
+  } else {
+    sources += [ "gn-platform/linux/config.h" ]
+    include_dirs = [ "gn-platform/linux" ]
+  }
+  
+  public_configs = [ ":snappy_config" ]
+}
+
+#executable("test_snappy") {
+#  testonly = true
+#  sources = [ "test_snappy.cpp" ]
+#  deps = [
+#    ":gtest_main",
+#    ":snappy"
+#  ]
+#}
+
+# TODO needs google-benchmark
+
+#executable("test_snappy_unit") {
+#  testonly = true
+#  sources = [ "snappy_unittest.cc" ]
+#  deps = [ ":snappy" ]
+#}
+
+#executable("test_snappy_gtest") {
+#  testonly = true
+#  sources = [ "snappy-test.cc" ]
+#  deps = [
+#    ":gtest_main",
+#  ]
+#}

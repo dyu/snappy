@@ -1,10 +1,8 @@
 # ==================================================
 # vars
 
-snappy_dir = "."
-
 config("snappy_config") {
-  include_dirs = [ "$snappy_dir" ]
+  include_dirs = [ "." ]
 }
 
 static_library("snappy") {

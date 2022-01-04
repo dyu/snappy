@@ -1,62 +1,68 @@
 #ifndef THIRD_PARTY_SNAPPY_OPENSOURCE_CMAKE_CONFIG_H_
 #define THIRD_PARTY_SNAPPY_OPENSOURCE_CMAKE_CONFIG_H_
 
+//@dyu
+if defined(_MSC_VER)
+#define HAVE_ATTRIBUTE_ALWAYS_INLINE 0
+#define HAVE_BUILTIN_CTZ 0
+#define HAVE_BUILTIN_EXPECT 0
+#else
+/* Define to 1 if the compiler supports __attribute__((always_inline)). */
+#define HAVE_ATTRIBUTE_ALWAYS_INLINE 1
+
 /* Define to 1 if the compiler supports __builtin_ctz and friends. */
-/* #undef HAVE_BUILTIN_CTZ */
+#define HAVE_BUILTIN_CTZ 1
 
 /* Define to 1 if the compiler supports __builtin_expect. */
-/* #undef HAVE_BUILTIN_EXPECT */
-
-/* Define to 1 if you have the <byteswap.h> header file. */
-/* #undef HAVE_BYTESWAP_H */
+#define HAVE_BUILTIN_EXPECT 1
+#endif
 
 /* Define to 1 if you have a definition for mmap() in <sys/mman.h>. */
-/* #undef HAVE_FUNC_MMAP */
+#define HAVE_FUNC_MMAP 0
 
 /* Define to 1 if you have a definition for sysconf() in <unistd.h>. */
-/* #undef HAVE_FUNC_SYSCONF */
-
-/* Define to 1 to use the gflags package for command-line parsing. */
-/* #undef HAVE_GFLAGS */
-
-/* Define to 1 if you have Google Test. */
-/* #undef HAVE_GTEST */
+#define HAVE_FUNC_SYSCONF 0
 
 /* Define to 1 if you have the `lzo2' library (-llzo2). */
-/* #undef HAVE_LIBLZO2 */
+#define HAVE_LIBLZO2 0
 
 /* Define to 1 if you have the `z' library (-lz). */
-/* #undef HAVE_LIBZ */
+#define HAVE_LIBZ 0
 
-/* Define to 1 if you have the <sys/endian.h> header file. */
-/* #undef HAVE_SYS_ENDIAN_H */
+/* Define to 1 if you have the `lz4' library (-llz4). */
+#define HAVE_LIBLZ4 0
 
 /* Define to 1 if you have the <sys/mman.h> header file. */
-/* #undef HAVE_SYS_MMAN_H */
+#define HAVE_SYS_MMAN_H 0
 
 /* Define to 1 if you have the <sys/resource.h> header file. */
-/* #undef HAVE_SYS_RESOURCE_H */
+#define HAVE_SYS_RESOURCE_H 0
 
 /* Define to 1 if you have the <sys/time.h> header file. */
-/* #undef HAVE_SYS_TIME_H */
+#define HAVE_SYS_TIME_H 0
 
 /* Define to 1 if you have the <sys/uio.h> header file. */
-/* #undef HAVE_SYS_UIO_H */
+#define HAVE_SYS_UIO_H 0
 
 /* Define to 1 if you have the <unistd.h> header file. */
-/* #undef HAVE_UNISTD_H */
+#define HAVE_UNISTD_H 0
 
 /* Define to 1 if you have the <windows.h> header file. */
 #define HAVE_WINDOWS_H 1
 
+//@dyu
 /* Define to 1 if you target processors with SSSE3+ and have <tmmintrin.h>. */
 #define SNAPPY_HAVE_SSSE3 0
 
+//@dyu
 /* Define to 1 if you target processors with BMI2+ and have <bmi2intrin.h>. */
 #define SNAPPY_HAVE_BMI2 0
 
+/* Define to 1 if you target processors with NEON and have <arm_neon.h>. */
+#define SNAPPY_HAVE_NEON 0
+
 /* Define to 1 if your processor stores words with the most significant byte
    first (like Motorola and SPARC, unlike Intel and VAX). */
-/* #undef SNAPPY_IS_BIG_ENDIAN */
+#define SNAPPY_IS_BIG_ENDIAN 0
 
 #endif  // THIRD_PARTY_SNAPPY_OPENSOURCE_CMAKE_CONFIG_H_

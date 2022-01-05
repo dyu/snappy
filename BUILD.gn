@@ -24,14 +24,14 @@ static_library("snappy") {
   
   # local includes
   if (is_win) {
-    sources += [ "gn-platform/win/config.h" ]
-    include_dirs = [ "gn-platform/win" ]
+    sources += [ "platform-include/win/config.h" ]
+    include_dirs = [ "platform-include/win" ]
   } else if (is_mac) {
-    sources += [ "gn-platform/mac/config.h" ]
-    include_dirs = [ "gn-platform/mac" ]
+    sources += [ "platform-include/mac/config.h" ]
+    include_dirs = [ "platform-include/mac" ]
   } else {
-    sources += [ "gn-platform/linux/config.h" ]
-    include_dirs = [ "gn-platform/linux" ]
+    sources += [ "platform-include/linux/config.h" ]
+    include_dirs = [ "platform-include/linux" ]
   }
   
   public_configs = [ ":snappy_config" ]

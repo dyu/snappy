@@ -127,7 +127,7 @@ class CycleTimer {
   inline ~CycleTimer() = default;
 
   inline void Start() {
-#ifdef WIN32
+#ifdef _WIN32
     QueryPerformanceCounter(&start_);
 #else
     ::gettimeofday(&start_, nullptr);
@@ -135,7 +135,7 @@ class CycleTimer {
   }
 
   inline void Stop() {
-#ifdef WIN32
+#ifdef _WIN32
     LARGE_INTEGER stop;
     LARGE_INTEGER frequency;
     QueryPerformanceCounter(&stop);
@@ -157,7 +157,7 @@ class CycleTimer {
 
  private:
   int64_t real_time_us_;
-#ifdef WIN32
+#ifdef _WIN32
   LARGE_INTEGER start_;
 #else
   struct ::timeval start_;
